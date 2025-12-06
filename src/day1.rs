@@ -34,7 +34,7 @@ impl LockDial {
 
     fn turn_right(&mut self, ticks: i16) {
         let new_position = self.cur_position + ticks;
-        
+
         // Count how many times we pass through 0
         // We pass through 0 every max_position units
         // But we need to check if we actually cross it
@@ -52,7 +52,7 @@ impl LockDial {
                 self.times_hit_zero += 1 + (remaining_ticks / self.max_position);
             }
         }
-        
+
         // Calculate final position
         self.cur_position = new_position % self.max_position;
     }
@@ -69,7 +69,7 @@ impl LockDial {
                 self.times_hit_zero += 1 + (remaining_ticks / self.max_position);
             }
         }
-        
+
         // Calculate final position
         let target = self.cur_position - ticks;
         self.cur_position = ((target % self.max_position) + self.max_position) % self.max_position;
@@ -98,7 +98,8 @@ fn read_lock_combination(file_path: &str) -> Vec<LockCommand> {
             let ticks: i16 = line[1..].parse().ok()?;
 
             Some(LockCommand { direction, ticks })
-        }).collect()
+        })
+        .collect()
 }
 
 pub fn day1(args: &[String]) {

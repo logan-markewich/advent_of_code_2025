@@ -27,11 +27,11 @@ impl IDRange {
         for id in self.min..=self.max {
             let id_str = id.to_string();
             let len = id_str.len();
-            
+
             // An ID is invalid if it's made of a sequence repeated two or more times
             // The entire number must be: pattern + pattern + ... (at least 2 repetitions)
             let mut is_invalid = false;
-            
+
             // Try all possible pattern lengths from 1 to len/2
             for pattern_len in 1..=(len / 2) {
                 // Check if the entire string can be made by repeating this pattern
@@ -40,7 +40,7 @@ impl IDRange {
                     if repetitions >= 2 {
                         let pattern = &id_str[0..pattern_len];
                         let mut is_repeating = true;
-                        
+
                         for i in 1..repetitions {
                             let start = i * pattern_len;
                             let end = start + pattern_len;
@@ -49,7 +49,7 @@ impl IDRange {
                                 break;
                             }
                         }
-                        
+
                         if is_repeating {
                             is_invalid = true;
                             break;
@@ -57,7 +57,7 @@ impl IDRange {
                     }
                 }
             }
-            
+
             if is_invalid {
                 invalid_ids.push(id);
             }
@@ -74,10 +74,21 @@ pub fn day2(args: &[String]) {
 
     let filename = &args[1];
     let contents = read_to_string(filename).expect("Failed to read file");
-    let split_contents = contents.lines().next().unwrap().split(",").collect::<Vec<&str>>();
-    let id_ranges: Vec<IDRange> = split_contents.iter().map(|line| IDRange::new(line)).collect();
-    let invalid_ids = id_ranges.iter().flat_map(|id_range| id_range.get_invalid_ids()).collect::<Vec<u64>>();
-    
+    let split_contents = contents
+        .lines()
+        .next()
+        .unwrap()
+        .split(",")
+        .collect::<Vec<&str>>();
+    let id_ranges: Vec<IDRange> = split_contents
+        .iter()
+        .map(|line| IDRange::new(line))
+        .collect();
+    let invalid_ids = id_ranges
+        .iter()
+        .flat_map(|id_range| id_range.get_invalid_ids())
+        .collect::<Vec<u64>>();
+
     let sum_invalid_ids: u64 = invalid_ids.iter().sum();
     println!("Sum of invalid IDs: {}", sum_invalid_ids);
 }
