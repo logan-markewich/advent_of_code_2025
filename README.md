@@ -15,3 +15,9 @@ I got really tripped up on part two, but I think I eventually got a decent-ish (
 This one felt a lot easier. Was able to figure out both parts pretty quickly.
 
 I also refactored the repo to have a module per-day, and have the top-level CLI select which day to run and forward args. I might think of a better organization later, we will see.
+
+### Day 3
+
+This one was fun! While the brute force approach is just to compare eveything to everything, it was fun to think about how to optimize this into a single pass.
+
+My solution for part 1 was super hacky, and part 2 forced me to generalize the solution into something cleaner.
