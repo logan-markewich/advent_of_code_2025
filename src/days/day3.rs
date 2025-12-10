@@ -94,15 +94,9 @@ impl BatteryBank {
     }
 }
 
-pub fn day3(args: &[String]) {
-    if args.len() != 2 {
-        eprintln!("Usage: {} day3 <range_file>", args[0]);
-        return;
-    }
-
+pub fn solve(input_file: &str) -> String {
     let max_to_use = 12;
-    let filename = &args[1];
-    let contents = read_to_string(filename).expect("Failed to read range file");
+    let contents = read_to_string(input_file).expect("Failed to read range file");
     let lines = contents.lines();
 
     let batteries: Vec<BatteryBank> = lines
@@ -114,5 +108,5 @@ pub fn day3(args: &[String]) {
         .map(|bank| bank.largest_charge())
         .sum::<u64>();
 
-    println!("Sum of largest charges: {}", largest_charge_sum);
+    format!("Sum of largest charges: {}", largest_charge_sum)
 }

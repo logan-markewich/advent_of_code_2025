@@ -18,7 +18,11 @@ impl PaperMap {
             }
         }
 
-        PaperMap { width, height, grid }
+        PaperMap {
+            width,
+            height,
+            grid,
+        }
     }
 
     // Finds all coords with < max_adjacent '@' characters
@@ -67,14 +71,8 @@ impl PaperMap {
     }
 }
 
-pub fn day4(args: &[String]) {
-    if args.len() != 2 {
-        eprintln!("Usage: {} <combination_file>", args[0]);
-        return;
-    }
-
-    let filename = &args[1];
-    let contents = read_to_string(filename).expect("Could not read file");
+pub fn solve(input_file: &str) -> String {
+    let contents = read_to_string(input_file).expect("Could not read file");
     let lines: Vec<String> = contents.lines().map(|line| line.to_string()).collect();
 
     let mut paper_map = PaperMap::new(&lines);
@@ -88,5 +86,5 @@ pub fn day4(args: &[String]) {
         coord_adjusted += new_coords.len();
     }
 
-    println!("Found {} valid coordinates:", coord_adjusted);
+    format!("Found {} valid coordinates:", coord_adjusted)
 }

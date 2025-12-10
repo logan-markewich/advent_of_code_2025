@@ -102,20 +102,16 @@ fn read_lock_combination(file_path: &str) -> Vec<LockCommand> {
         .collect()
 }
 
-pub fn day1(args: &[String]) {
-    if args.len() != 2 {
-        eprintln!("Usage: {} <combination_file>", args[0]);
-        return;
-    }
-
-    let combination_file = &args[1];
-    let combination = read_lock_combination(combination_file);
+pub fn solve(input_file: &str) -> String {
+    let combination = read_lock_combination(input_file);
     let mut dial = LockDial::new(100);
 
     for command in &combination {
         dial.turn(command);
     }
 
-    println!("Final dial position: {}", dial.cur_position);
-    println!("Times hit zero position: {}", dial.times_hit_zero);
+    format!(
+        "Final dial position: {}\nTimes hit zero position: {}",
+        dial.cur_position, dial.times_hit_zero
+    )
 }

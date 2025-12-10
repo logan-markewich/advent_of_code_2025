@@ -66,14 +66,8 @@ impl IDRange {
     }
 }
 
-pub fn day2(args: &[String]) {
-    if args.len() != 2 {
-        eprintln!("Usage: {} <id_range_file>", args[0]);
-        return;
-    }
-
-    let filename = &args[1];
-    let contents = read_to_string(filename).expect("Failed to read file");
+pub fn solve(input_file: &str) -> String {
+    let contents = read_to_string(input_file).expect("Failed to read file");
     let split_contents = contents
         .lines()
         .next()
@@ -90,5 +84,6 @@ pub fn day2(args: &[String]) {
         .collect::<Vec<u64>>();
 
     let sum_invalid_ids: u64 = invalid_ids.iter().sum();
-    println!("Sum of invalid IDs: {}", sum_invalid_ids);
+
+    format!("Sum of invalid IDs: {}", sum_invalid_ids)
 }
