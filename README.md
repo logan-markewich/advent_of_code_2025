@@ -25,3 +25,9 @@ My solution for part 1 was super hacky, and part 2 forced me to generalize the s
 ### Day 4
 
 Honestly the easiest one so far. There's probably a better way to do this beyond just iterating over a 2D grid (maybe something smarter with adjecnency matrices?) but this was quick and easy enough.
+
+### Day 5
+
+I got a little sick of the organization, so I did some light refactoring to make the code a little more organized, extensible, and readable.
+
+Day 5 was another straightforward day. Part 2 was fun to thing about how to merge ranges vs. just brute forcing everything. I was prety happy with the sort -> merge approach I came up with.
